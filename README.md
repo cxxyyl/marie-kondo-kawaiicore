@@ -24,7 +24,7 @@ function draw –> runs with 60fps and this is where the magic (animation) happe
 for files -> need to run local server
 
 
-###References
+### References
 https://p5js.org/examples/repetition-noise/
 
 https://p5js.org/examples/math-and-physics-game-of-life/
