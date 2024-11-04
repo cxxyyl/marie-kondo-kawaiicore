@@ -1,7 +1,5 @@
 # Day 1
-
 ## Contradictions
-
 always sleeping – always tired
 want speaking english – don't want to speak english (tiering)
 wanting to meet people – beeing tired of meeting people
@@ -14,15 +12,11 @@ like to spend time doing nothing – not enough time
 ## Team Names
 Marie Kondo's Kawaiicore
 
-
-
 ## Few things about p5.js
-
 function setup -> sets up the canvas, which can be a html element
 function draw –> runs with 60fps and this is where the magic (animation) happens
 
 for files -> need to run local server
-
 
 ### References
 https://p5js.org/examples/repetition-noise/
@@ -30,9 +24,7 @@ https://p5js.org/examples/repetition-noise/
 https://p5js.org/examples/math-and-physics-game-of-life/
 
 
-
 ## How will it work
-
 - Assets Folder with img or svg
 - Heatmap to check where stuff is already generated
 	- updates everytime someting is placed/generated
@@ -51,4 +43,7 @@ https://p5js.org/examples/math-and-physics-game-of-life/
 
 
 
+# Day 2
+
 ## Design a (clean) Poster
+
