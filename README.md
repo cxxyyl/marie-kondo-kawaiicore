@@ -42,11 +42,14 @@ https://p5js.org/examples/math-and-physics-game-of-life/
 - what happens if two sources collide?
 
 
-##
-hi
 # Day 2
 
-### Change
+## p5.js
+
+
+## ToDo's
+- Prototype
+
 
 ## Design a (clean) Poster
 
