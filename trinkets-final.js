@@ -276,6 +276,12 @@ function getAverageBrightness(x, y, w, h) {
   }
   return int(totalBrightness / totalPixels);
 }
-Jetzt
 
+
+
+function keyPressed() {
+    if(key == 's' || key == 'S'){
+        save('myPoster-' + hour() + "." + minute() + "." + second() + '.png' );
+    }
+}
 
