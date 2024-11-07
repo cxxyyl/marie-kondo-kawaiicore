@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="style.css"></link>
     <script src="p5.min.js"></script>
     <script src="trinkets-final.js"></script>
+        <script>
+        function setRandomImage() {
+            const imgNumber = Math.floor(Math.random() * 17) + 1; // 1~17 사이의 랜덤 숫자
+            const imgElement = document.getElementById("openNav-image");
+            imgElement.src = `assets/img/img${imgNumber}.png`;
+        }
+        
+        window.onload = setRandomImage; // 페이지가 로드될 때 setRandomImage 함수 호출
+    </script>
 
 </head>
 <body>
@@ -22,7 +31,11 @@
 
     <nav>
         <input id="openNav" type="checkbox" style="display: none;"></input>
-        <label id="openNav-label" for="openNav"><img src="assets/img/img17.png"></label>
+         <label id="openNav-label" for="openNav">
+            <!-- img 태그에 id를 부여하여 JavaScript에서 접근 가능하게 설정 -->
+            <img id="openNav-image" src="assets/img/img1.png" alt="Random Image">
+        </label>
+      
         <div id="controls">
             <div class="input-wrapper">
                 <input id="toggle" type="checkbox" style="display: none;"></input>
@@ -42,4 +55,3 @@
 
 </body> 
 </html>
-
