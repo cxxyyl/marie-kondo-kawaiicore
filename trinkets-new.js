@@ -15,10 +15,10 @@ let filenamesImg = ["img1.png", "img2.png", "img3.png", "img4.png", "img5.png", 
 
 
 let trinketShape = [];
-let filenamesShapes = ["img1.png", "img2.png", "img3.png", "img4.png", "img5.png", "img6.png", "img7.png", "img8.png", "img9.png", "img10.png", "img11.png", "img12.png", "img13.png", "img14.png", "img15.png", "img16.png", "img17.png"]; 
+let filenamesShape = ["img1.png", "img2.png", "img3.png", "img4.png", "img5.png", "img6.png", "img7.png", "img8.png", "img9.png", "img10.png", "img11.png", "img12.png", "img13.png", "img14.png", "img15.png", "img16.png", "img17.png"]; 
 
 
-let allTrinkets = filenamesImg.concat(filenamesShape);
+let allTrinkets = [];
 
 
 // Controls
@@ -31,7 +31,7 @@ let jitter = 0; // add random jitter between 0 – 50px
 
 // Arrays that save Coordinate and Image Data
 let points = [];
-// [0]xPosition [1]yPosition [2]xHeight [3]yHeight [4]Image [5]xJitter [6]yJitter
+// [0]xPosition [1]yPosition [2]xHeight [3]yHeight [4]Trinket [5]xJitter [6]yJitter [7]TrinketArrayPos
 
 
 let gridRows, cellWidth;
@@ -54,10 +54,15 @@ function preload() {
 	  }
 
 	//Load all SVGs into an array
-	for (let i = 0; i < filenamesSvg.length; i++) {
+	for (let i = 0; i < filenamesShape.length; i++) {
 		let shape = loadImage(`/assets/shape/${filenamesShape[i]}`);
 		trinketShape.push(shape);
 		}
+
+		allTrinkets = trinketImg.concat(trinketShape);
+		console.log(allTrinkets);
+		console.log(allTrinkets.length);
+
 }
 
 // setup canvas
@@ -115,7 +120,6 @@ function setup() {
     pg2.background(255);
     pg2.noStroke();
 	
-
 	drawTrinkets(); // Draw the first Trinkets over the font
 }
 
@@ -156,9 +160,12 @@ function draw() {
 	// Draw images
 	for (let i = 0; i < points.length; i++) {
 		
-		if(toggleGraphics == false) {
-			image(points[i][4], points[i][0] + points[i][5] , points[i][1] - points[i][6], points[i][2], points[i][3])
-		}
+		// if(toggleGraphics == false) {
+			image(points[i][4], points[i][0] + points[i][5] , points[i][1] - points[i][6], points[i][2], points[i][3]);
+
+			let buffer = parseInt(points[i][7]);
+			console.log('TrinketArrayPos: ' + points[i][7] +', buffer: ' + allTrinkets[8]);
+		// }
 
 		// if toggleGraphics == false  
 		// image(points[i][4], points[i][0] + points[i][5] , points[i][1] - points[i][6], points[i][2], points[i][3])
@@ -228,8 +235,9 @@ function drawTrinkets() {
 
 // Make Point Data for Images and push to points array
 function drawNewTrinket(x, y, w, h) {
-	let trinketArrayPos = random(allTrinkets.length / 2);
-	points.push([x, y, w, h, trinketArrayPos, random(jitter), random(jitter)]);
+	let trinketArrayPos = int(random(allTrinkets.length / 2));
+	let trinket = random(trinketImg);
+	points.push([x, y, w, h, trinket, random(jitter), random(jitter), trinketArrayPos]);
 	pg2.fill(0);
 	pg2.rect(x, y, w, h);
   }

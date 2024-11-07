@@ -1,0 +1,145 @@
+
+@font-face {
+    font-family: helvetica;
+    src: url('assets/helvetica.ttf');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-size: 16px;
+    font-family: helvetica;
+}
+
+canvas{
+    position: fixed;
+    z-index: -1;
+}
+
+
+
+/* Definition */
+/* Currently Rendered with p5.js */
+#def{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: calc(100% - 2rem);
+    padding: 1rem;
+
+    display: flex;
+    justify-content: space-between;
+}
+    
+    #def h1{
+        padding-left: 1rem;
+        font-weight: lighter;
+        font-size: 1.9rem;
+    }
+
+    .spacer{
+        height: .12rem;
+        width: 87%;
+        margin: 1.15rem 1rem 1.15rem 1rem;
+        background-color: black;
+    }
+
+    #def p{
+        width: 12rem;
+        padding-top: 0.5rem;
+        padding-right: 1rem;
+        font-size: 1.2rem;
+    }
+
+
+/* Nav / Menu */
+nav{
+    position: fixed;
+    width: 12rem;
+    right: 0;
+    bottom: 0;
+    padding: 2.6rem 1rem;
+
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+label{
+    cursor: pointer;
+}
+
+/* Button with Image */
+
+
+#openNav:checked ~ #controls{
+    height: 20rem;
+    opacity: 100;
+    pointer-events: all;
+}
+
+#openNav-label{
+    display: flex;
+    justify-content: center;
+}
+
+#openNav-label:hover{
+    animation: hopp 750ms ease infinite ;
+}
+
+@keyframes hopp {
+    0%, 100%{transform: translateY(0);}
+    50%{transform: translateY(-7px);}
+}
+
+/* Controls */
+#controls{
+    display: flex;
+    width: 100%;
+    height: 0rem;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 500ms ease;
+} 
+
+#controls input{
+    width: 100%;
+}
+
+.input-wrapper{
+    padding-bottom: 2rem;
+}
+
+label.slider{
+    background-color: #ffffff91;
+    box-shadow: 0 0 20px 0 white;
+
+    cursor:auto;
+}
+
+
+#toggle-label{
+    width: min-content;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    border: 1px solid black;
+    background-color: #ececec; 
+    transition: background-color 300ms ease ;
+}
+
+#toggle-label:hover{
+    background-color: #c3c3c3; 
+}
+    
+#toggle-label::after{
+    content: 'Images';
+}
+#toggle:checked + #toggle-label::after {
+    content: 'Symbols';
+}
+
