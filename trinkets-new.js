@@ -11,9 +11,14 @@ let fontSize = 240;
 // let trinketImg
 
 let trinketImg = [];
-let filenamesImg = ["img1.png", "img2.png", "img3.png", "img4.png", "img5.png", "img6.png", "img7.png", "img8.png", "img9.png", "img10.png", "img11.png", "img12.png", "img13.png", "img14.png", "img15.png", "img16.png", "img17.png"]; 
+let filenamesImg = ["img1.png", "img2.png", "img3.png", "img4.png", "img5.png", "img6.png", "img7.png", "img8.png", "img9.png", "img10.png", "img11.png", "img12.png", "img13.png", "img14.png", "img15.png", "img16.png", "img17.png"];
 
 
+let trinketShape = [];
+let filenamesShapes = ["img1.png", "img2.png", "img3.png", "img4.png", "img5.png", "img6.png", "img7.png", "img8.png", "img9.png", "img10.png", "img11.png", "img12.png", "img13.png", "img14.png", "img15.png", "img16.png", "img17.png"]; 
+
+
+let allTrinkets = filenamesImg.concat(filenamesShape);
 
 
 // Controls
@@ -49,10 +54,10 @@ function preload() {
 	  }
 
 	//Load all SVGs into an array
-	// for (let i = 0; i < filenamesSvg.length; i++) {
-	// 	let shape = loadImage(`/assets/shape/${filenamesShape[i]}`);
-	// 	trinketShape.push(shape);
-	// 	}
+	for (let i = 0; i < filenamesSvg.length; i++) {
+		let shape = loadImage(`/assets/shape/${filenamesShape[i]}`);
+		trinketShape.push(shape);
+		}
 }
 
 // setup canvas
@@ -151,10 +156,10 @@ function draw() {
 	// Draw images
 	for (let i = 0; i < points.length; i++) {
 		
-		// if(toggleGraphics == false) {
-		// if toggleGraphics == false  
-		image(points[i][4], points[i][0] + points[i][5] , points[i][1] - points[i][6], points[i][2], points[i][3])
-		// }
+		if(toggleGraphics == false) {
+			image(points[i][4], points[i][0] + points[i][5] , points[i][1] - points[i][6], points[i][2], points[i][3])
+		}
+
 		// if toggleGraphics == false  
 		// image(points[i][4], points[i][0] + points[i][5] , points[i][1] - points[i][6], points[i][2], points[i][3])
 
@@ -191,6 +196,7 @@ function drawGrid() {
 	noStroke();
   }
   
+
 // Detect the average grightness inside a cell. Used for checking pg1 to detect where the letters are.
 function getAverageBrightness(x, y, w, h) {
 	let totalBrightness = 0;
@@ -222,8 +228,8 @@ function drawTrinkets() {
 
 // Make Point Data for Images and push to points array
 function drawNewTrinket(x, y, w, h) {
-	let img = random(trinketImg);
-	points.push([x, y, w, h, img, random(jitter), random(jitter)]);
+	let trinketArrayPos = random(allTrinkets.length / 2);
+	points.push([x, y, w, h, trinketArrayPos, random(jitter), random(jitter)]);
 	pg2.fill(0);
 	pg2.rect(x, y, w, h);
   }
@@ -349,10 +355,6 @@ function drawSearchNeighbor(x, y, w, h){
 	noStroke();
 	rect(x, y, w, h);
 }
-
-
-
-
 
 
 
