@@ -60,8 +60,8 @@ function preload() {
 		}
 
 		allTrinkets = trinketImg.concat(trinketShape);
-		console.log(allTrinkets);
-		console.log(allTrinkets.length);
+		// console.log(allTrinkets);
+		// console.log(allTrinkets.length);
 
 }
 
@@ -164,7 +164,7 @@ function draw() {
 			image(points[i][4], points[i][0] + points[i][5] , points[i][1] - points[i][6], points[i][2], points[i][3]);
 
 			let buffer = parseInt(points[i][7]);
-			console.log('TrinketArrayPos: ' + points[i][7] +', buffer: ' + allTrinkets[8]);
+			// console.log('TrinketArrayPos: ' + points[i][7] +', buffer: ' + allTrinkets[8]);
 		// }
 
 		// if toggleGraphics == false  
@@ -344,7 +344,7 @@ function checkNeighbors(x, y) {
 	}
 
 
-	console.log(whichNeighbor);
+	// console.log(whichNeighbor);
 	return isCloseToTrinket;
 }
 

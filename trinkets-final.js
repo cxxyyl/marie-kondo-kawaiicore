@@ -1,3 +1,7 @@
+// This is the 'final' p5 code
+
+
+
 // Global Variables
 
 // Typography
@@ -35,7 +39,7 @@ function preload() {
 
   for (let i = 0; i < filenamesImg; i++) {
     let shape = loadImage(`assets/shape/img` + str(i + 1) + `.png`);
-    console.log(`Loading shape image: assets/shape/img` + str(i + 1) + `.png`);
+    // console.log(`Loading shape image: assets/shape/img` + str(i + 1) + `.png`);
     trinketShape.push(shape);
   }
 }
@@ -185,12 +189,12 @@ function findNewTrinketArea() {
   let x = floor(random(1, gridColumns - 1)) * cellWidth;
   let y = floor(random(1, gridRows - 1)) * cellWidth;
   let col = pg2.get(x + cellWidth / 2, y + cellWidth / 2);
-  console.log(
-    `Checking position x: ${x}, y: ${y}, brightness: ${brightness(col)}`
-  );
+  // console.log(
+  //   `Checking position x: ${x}, y: ${y}, brightness: ${brightness(col)}`
+  // );
 
   if (brightness(col) > 5 && checkNeighbors(x, y)) {
-    console.log("Drawing new trinket at:", x, y);
+    // console.log("Drawing new trinket at:", x, y);
     drawNewTrinket(x, y, cellWidth, cellWidth);
   }
 }
@@ -213,15 +217,15 @@ function checkNeighbors(x, y) {
     let nx = x + dx * cellWidth;
     let ny = y + dy * cellWidth;
     let col = pg2.get(nx + int(cellWidth / 2), ny + int(cellWidth / 2));
-    console.log(
-      `Checking neighbor at nx: ${nx}, ny: ${ny}, brightness: ${brightness(
-        col
-      )}`
-    );
+    // console.log(
+    //   `Checking neighbor at nx: ${nx}, ny: ${ny}, brightness: ${brightness(
+    //     col
+    //   )}`
+    // );
     return brightness(col) < neighborThreshold;
   });
 
-  console.log("Is close to other trinket:", isClose);
+  // console.log("Is close to other trinket:", isClose);
   return isClose;
 }
 

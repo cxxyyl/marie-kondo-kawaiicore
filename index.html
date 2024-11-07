@@ -1,41 +1,84 @@
 <!DOCTYPE html>
+
+<!-- 
+                                                                                                            
+    ✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°
+    °✦                                                                                                      °✦ 
+    ✦°     Hey our dearest Visitor,                                                                         ✦° 
+    °✦             it's so nice to see you here.                                                            °✦ 
+    ✦°                                                                                                      ✦° 
+    °✦         This Website was made during the Hyperloop Workshop with Vera van de Seyp.                   °✦ 
+    ✦°                                         ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾                                         ✦° 
+    °✦                                                 Here is the documentation for the Workshop           °✦ 
+    ✦°                                                  https://veravandeseyp.com/workshops/hfbk/           ✦° 
+    °✦                                                                                                      °✦ 
+    ✦°                                                                                                      ✦° 
+    °✦         This lovely workshop took place at HFBK Hamburg                                              °✦ 
+    ✦°                    at our Klasse Digitale Grafik (https://digitale-grafik.com)                       ✦° 
+    °✦           from 4.–8. November 2024.                                                                  °✦ 
+    ✦°                              – With the main topic was beeing p5.js (https://p5js.org/)              ✦° 
+    °✦                                                                                                      °✦ 
+    ✦°                                                                                                      ✦° 
+    °✦         This Website was made by Yeji (IG: @yeji.cheon) and Stephan (www.cxxyyl.xyz)                 °✦ 
+    ✦°                                                               and published on Nov. 7. 2024.         ✦° 
+    °✦                                                                                                      °✦ 
+    ✦°                                                                                                      ✦° 
+    °✦                   <3 And Vera! Thanks for all your support and patience <3                           °✦ 
+    ✦°                                                                                                      ✦° 
+    °✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦°✦ 
+  
+ -->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marie Kondo Kawaiicore</title>
 
-    
+    <meta name="robots" content="noindex">
+
+    <title>Marie Kondō Kawaiicore</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+
+
+
     <link rel="stylesheet" href="style.css"></link>
     <script src="p5.min.js"></script>
     <script src="trinkets-final.js"></script>
-        <script>
+
+    <script>
+        // Change the lil menu-sprite on reload
         function setRandomImage() {
-            const imgNumber = Math.floor(Math.random() * 17) + 1; // 1~17 사이의 랜덤 숫자
+            const imgNumber = Math.floor(Math.random() * 17) + 1; 
             const imgElement = document.getElementById("openNav-image");
             imgElement.src = `assets/img/img${imgNumber}.png`;
         }
-        
-        window.onload = setRandomImage; // 페이지가 로드될 때 setRandomImage 함수 호출
+    
+        window.onload = setRandomImage;
     </script>
 
 </head>
 <body>
 
+    <!-- This is no longer relevant. It's beeing rendered by p5.-->
     <!-- <section id="def">
         <h1>definition</h1>
         <div class="spacer"></div>
         <p>the strong desire to be with cute things conflicting with an eqally strong desire for an entierly unclutterd space</p>
     </section> -->
 
-
+    <!-- Nav / Menu with the lil menu-sprite -->
     <nav>
         <input id="openNav" type="checkbox" style="display: none;"></input>
          <label id="openNav-label" for="openNav">
-            <!-- img 태그에 id를 부여하여 JavaScript에서 접근 가능하게 설정 -->
             <img id="openNav-image" src="assets/img/img1.png" alt="Random Image">
         </label>
       
+        <!-- Controls that pop up on click -->
         <div id="controls">
             <div class="input-wrapper">
                 <input id="toggle" type="checkbox" style="display: none;"></input>
@@ -51,7 +94,5 @@
             </div>
         </div>
     </nav>
-
-
 </body> 
-</html>
+</html> 

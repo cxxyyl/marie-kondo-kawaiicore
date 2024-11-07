@@ -1,9 +1,13 @@
 
+
+/* Import Typeface */
 @font-face {
     font-family: helvetica;
     src: url('assets/helvetica.ttf');
 }
 
+
+/* General Styling & Resets */
 *{
     margin: 0;
     padding: 0;
@@ -18,6 +22,99 @@ canvas{
     position: fixed;
     z-index: -1;
 }
+
+
+
+/* Nav / Menu */
+nav{
+    position: fixed;
+    width: 12rem;
+    right: 0;
+    bottom: 0;
+    padding: 2.6rem 1rem;
+
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+label{
+    cursor: pointer;
+}
+
+
+/* Lil Menu-Sprite */
+#openNav-label{
+    display: flex;
+    justify-content: center;
+}
+
+#openNav-label:hover{
+    animation: hopp 750ms ease infinite ;
+}
+
+@keyframes hopp {
+    0%, 100%{transform: translateY(0);}
+    50%{transform: translateY(-7px);}
+}
+
+
+/* Controls – Pop up on */
+#controls{
+    display: flex;
+    width: 100%;
+    height: 0rem;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 500ms ease;
+} 
+
+/* Open Controls when clicking on the Menu-Sprite */
+#openNav:checked ~ #controls{
+    height: 20rem;
+    opacity: 100;
+    pointer-events: all;
+}
+
+    #controls input{
+        width: 100%;
+    }
+
+    .input-wrapper{
+        padding-bottom: 2rem;
+    }
+
+    label.slider{
+        background-color: #ffffff91;
+        box-shadow: 0 0 20px 0 white;
+
+        cursor:auto;
+    }
+
+    /* Styling for Images/Symbols 'Button' */
+    #toggle-label{
+        width: min-content;
+        padding: 0.2rem;
+        border-radius: 0.2rem;
+        border: 1px solid black;
+        background-color: #ececec; 
+        transition: background-color 300ms ease ;
+    }
+
+    #toggle-label:hover{
+        background-color: #c3c3c3; 
+    }
+        
+    #toggle-label::after{
+        content: 'Images';
+    }
+
+    /* Switch when clicked */
+    #toggle:checked + #toggle-label::after {
+        content: 'Symbols';
+    }
 
 
 
@@ -54,92 +151,4 @@ canvas{
         font-size: 1.2rem;
     }
 
-
-/* Nav / Menu */
-nav{
-    position: fixed;
-    width: 12rem;
-    right: 0;
-    bottom: 0;
-    padding: 2.6rem 1rem;
-
-    display: flex;
-    flex-direction: column-reverse;
-}
-
-label{
-    cursor: pointer;
-}
-
-/* Button with Image */
-
-
-#openNav:checked ~ #controls{
-    height: 20rem;
-    opacity: 100;
-    pointer-events: all;
-}
-
-#openNav-label{
-    display: flex;
-    justify-content: center;
-}
-
-#openNav-label:hover{
-    animation: hopp 750ms ease infinite ;
-}
-
-@keyframes hopp {
-    0%, 100%{transform: translateY(0);}
-    50%{transform: translateY(-7px);}
-}
-
-/* Controls */
-#controls{
-    display: flex;
-    width: 100%;
-    height: 0rem;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 500ms ease;
-} 
-
-#controls input{
-    width: 100%;
-}
-
-.input-wrapper{
-    padding-bottom: 2rem;
-}
-
-label.slider{
-    background-color: #ffffff91;
-    box-shadow: 0 0 20px 0 white;
-
-    cursor:auto;
-}
-
-
-#toggle-label{
-    width: min-content;
-    padding: 0.2rem;
-    border-radius: 0.2rem;
-    border: 1px solid black;
-    background-color: #ececec; 
-    transition: background-color 300ms ease ;
-}
-
-#toggle-label:hover{
-    background-color: #c3c3c3; 
-}
-    
-#toggle-label::after{
-    content: 'Images';
-}
-#toggle:checked + #toggle-label::after {
-    content: 'Symbols';
-}
 
