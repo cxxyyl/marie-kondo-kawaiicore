@@ -22,7 +22,6 @@ let toggleGraphics = false;
 let toggleGrid;
 let gridColumns = 100;
 let thresholdFontDetection = 50;
-let modDrawTrinkets = 0; // from 0 to 255 -> add difficulty of spawning
 let jitter = 0; // add random jitter between 0 – 50px
 
 
@@ -62,24 +61,18 @@ function setup() {
     let inputToggle = select("#toggle");
 	let inputGridToggle = select('#openNav');
     let inputColums = select("#columns");
-    let inputThreshold = select("#threshold");
-    let inputMod = select("#mod");
 	let inputJitter = select("#jitter");
 
     // Initialize Controls –– THIS OVERWRITES THE CONTROLS SECTION!
     toggleGraphics = inputToggle.checked();
 	toggleGrid = inputGridToggle.checked();
     gridColumns = inputColums.value();
-    thresholdFontDetection = inputThreshold.value();
-    modDrawTrinkets = inputMod.value();
 	jitter = inputJitter.value();
 
 	// Eventlistener for updating controls
 	inputToggle.input(() => toggleGraphics = inputToggle.checked());
 	inputGridToggle.input(() => toggleGrid = inputGridToggle.checked());
 	inputColums.input(() => gridColumns = inputColums.value());
-	inputThreshold.input(() => thresholdFontDetection = inputThreshold.value());
-	inputMod.input(() => modDrawTrinkets = inputMod.value());
 	inputJitter.input(() => jitter = inputJitter.value());
 
 
@@ -215,9 +208,10 @@ function drawTrinkets() {
 	for (let x = 0; x < gridColumns; x++) {
 		for (let y = 0; y < gridRows; y++) {
 			let col = getAverageBrightness(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
-			if (col + random(modDrawTrinkets) < thresholdFontDetection) {
+			if (col < thresholdFontDetection) {
 				drawNewShape(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
 				drawNewImg(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
+				console.log(col, thresholdFontDetection);
 			}
 		}
 	}
@@ -254,50 +248,56 @@ function findNewTrinketArea() {
 		if (isClose == true) {
 			drawNewShape(x, y, cellWidth, cellWidth);
 			drawNewImg(x, y, cellWidth, cellWidth);
-    }
-  }
+    	}
+  	} else {console.log('no neighboring trinkes');}
 }
 
 
 // check neighbors
 function checkNeighbors(x, y) {
   let isCloseToTrinket = false;
-
-  let neighborThreshold = 100;
+  let neighborThreshold = 5;
 
 	// top 
 	if (brightness(pg2.get(x, y - int(cellWidth / 2))) < neighborThreshold) {
 		isCloseToTrinket = true;
+		console.log('top');
 	}
 
 	// top right
 	if (brightness(pg2.get(x + int(cellWidth / 2), y - int(cellWidth / 2))) < neighborThreshold) {
 		isCloseToTrinket = true;
+		console.log('top right');
 	}
 
 	// right 
 	if (brightness(pg2.get(x + int(cellWidth / 2), y)) < neighborThreshold) {
 	isCloseToTrinket = true;
+	console.log('right');
 	}
 
 	// right bottom
 	if (brightness(pg2.get(x + int(cellWidth / 2), y + int(cellWidth / 2))) < neighborThreshold) {
 		isCloseToTrinket = true;
+		console.log('right bottom');
 		}
 
 	// bottom
 	if (brightness(pg2.get(x, y + int(cellWidth / 2))) < neighborThreshold) {
 	isCloseToTrinket = true;
+	console.log('bottom');
 	}
 
 	//bottom left
 	if (brightness(pg2.get(x - int(cellWidth / 2), y + int(cellWidth / 2))) < neighborThreshold) {
 		isCloseToTrinket = true;
+		console.log('bottom left');
 		}
 
 	// left
 	if (brightness(pg2.get(x - int(cellWidth / 2), y)) < neighborThreshold) {
 		isCloseToTrinket = true;
+		console.log('left');
 	}
 
 	return isCloseToTrinket;
