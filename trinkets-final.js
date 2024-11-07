@@ -9,46 +9,8 @@ let fontSize = 240;
 
 // Load Images
 let trinketImg = [];
-let filenamesImg = [
-  "img1.png",
-  "img2.png",
-  "img3.png",
-  "img4.png",
-  "img5.png",
-  "img6.png",
-  "img7.png",
-  "img8.png",
-  "img9.png",
-  "img10.png",
-  "img11.png",
-  "img12.png",
-  "img13.png",
-  "img14.png",
-  "img15.png",
-  "img16.png",
-  "img17.png",
-];
-
+let filenamesImg = 16;
 let trinketShape = [];
-let filenamesShape = [
-  "img1.png",
-  "img2.png",
-  "img3.png",
-  "img4.png",
-  "img5.png",
-  "img6.png",
-  "img7.png",
-  "img8.png",
-  "img9.png",
-  "img10.png",
-  "img11.png",
-  "img12.png",
-  "img13.png",
-  "img14.png",
-  "img15.png",
-  "img16.png",
-  "img17.png",
-];
 
 // Controls
 let toggleGraphics = false;
@@ -67,13 +29,13 @@ function preload() {
   fontSans = loadFont("assets/helvetica.ttf");
   fontScript = loadFont("assets/aston.ttf");
 
-  for (let i = 0; i < filenamesImg.length; i++) {
-    trinketImg.push(loadImage(`assets/img/${filenamesImg[i]}`));
+  for (let i = 0; i < filenamesImg; i++) {
+    trinketImg.push(loadImage(`assets/img/img` + str(i + 1) + `.png`));
   }
 
-  for (let i = 0; i < filenamesShape.length; i++) {
-    let shape = loadImage(`assets/shape/${filenamesShape[i]}`);
-    console.log(`Loading shape image: assets/shape/${filenamesShape[i]}`);
+  for (let i = 0; i < filenamesImg; i++) {
+    let shape = loadImage(`assets/shape/img` + str(i + 1) + `.png`);
+    console.log(`Loading shape image: assets/shape/img` + str(i + 1) + `.png`);
     trinketShape.push(shape);
   }
 }
@@ -97,40 +59,36 @@ function setup() {
 
   createCanvas(windowWidth, windowHeight);
 
-  //Typography  Change when final graphics 
-    textFont(fontSans, fontSize);
-    textLeading(fontSize * 0.8);
-    
-	// Define Grid
-	cellWidth = width / gridColumns;
-	gridRows = ceil(height / cellWidth);
+  //Typography  Change when final graphics
+  textFont(fontSans, fontSize);
+  textLeading(fontSize * 0.8);
 
+  // Define Grid
+  cellWidth = width / gridColumns;
+  gridRows = ceil(height / cellWidth);
 
   // Draw 'Heatmaps' pg1 & pg2
   noStroke();
   pg1 = createGraphics(width, height);
   pg2 = createGraphics(width, height);
 
-
-	pg1.background(255);
+  pg1.background(255);
 
   // Draw static typography for pg1 -> clean type
   pg1.textFont(fontSans, fontSize);
   pg1.textLeading(fontSize * 0.8);
-  pg1.text(txtKondo + '\n' + txtKawaii, 30, 800, width, height);
+  pg1.text(txtKondo + "\n" + txtKawaii, 30, 800, width, height);
 
   // generate Trinket Map (pg2) of Lettering (pixelated)
   pg2.background(255);
   pg2.noStroke();
-	
 
-	drawTrinkets(); // Draw the first Trinkets over the font
+  drawTrinkets(); // Draw the first Trinkets over the font
 }
 
 // Main draw function
 function draw() {
   background(255);
-
 
   let currentImages = toggleGraphics ? trinketShape : trinketImg;
 
@@ -138,29 +96,32 @@ function draw() {
   gridRows = ceil(height / cellWidth);
 
   // Redraw the typography with the final Design
-	textFont(fontSans, fontSize);
-	textLeading(fontSize * 0.8);
-	fill(0);
-	strokeWeight(0);
-	text(txtKondo + '\n' + txtKawaii, 30, 800, width, height);
+  textFont(fontSans, fontSize);
+  textLeading(fontSize * 0.8);
+  fill(0);
+  strokeWeight(0);
+  text(txtKondo + "\n" + txtKawaii, 30, 800, width, height);
 
-	fill(0);
-	strokeWeight(0);
-	textFont(fontSans, 31);
-    textLeading(31 * 0.8);
-	text('definition', 30, 44);
+  fill(0);
+  strokeWeight(0);
+  textFont(fontSans, 31);
+  textLeading(31 * 0.8);
+  text("definition", 30, 44);
 
-	fill(0);
-	strokeWeight(0);
-	textFont(fontSans, 19);
-	textLeading(19 * 1.1);
-	text('the strong desire to be with cute things conflicting with an eqally strong desire for an entierly unclutterd space', windowWidth - 198, 42, 180)
+  fill(0);
+  strokeWeight(0);
+  textFont(fontSans, 19);
+  textLeading(19 * 1.1);
+  text(
+    "the strong desire to be with cute things conflicting with an eqally strong desire for an entierly unclutterd space",
+    windowWidth - 198,
+    42,
+    180
+  );
 
-	stroke(0);
-	strokeWeight(2);
-	line(170,37,windowWidth - 215,37);
-
-
+  stroke(0);
+  strokeWeight(2);
+  line(170, 37, windowWidth - 215, 37);
 
   for (let i = 0; i < points.length; i++) {
     let img = currentImages[i % currentImages.length];
@@ -251,7 +212,7 @@ function checkNeighbors(x, y) {
   let isClose = neighborPositions.some(([dx, dy]) => {
     let nx = x + dx * cellWidth;
     let ny = y + dy * cellWidth;
-    let col = pg2.get(nx + cellWidth / 2, ny + cellWidth / 2);
+    let col = pg2.get(nx + int(cellWidth / 2), ny + int(cellWidth / 2));
     console.log(
       `Checking neighbor at nx: ${nx}, ny: ${ny}, brightness: ${brightness(
         col
@@ -277,11 +238,8 @@ function getAverageBrightness(x, y, w, h) {
   return int(totalBrightness / totalPixels);
 }
 
-
-
 function keyPressed() {
-    if(key == 's' || key == 'S'){
-        save('myPoster-' + hour() + "." + minute() + "." + second() + '.png' );
-    }
+  if (key == "s" || key == "S") {
+    save("myPoster-" + hour() + "." + minute() + "." + second() + ".png");
+  }
 }
-
