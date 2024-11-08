@@ -1,8 +1,10 @@
 // This is the 'final' p5 code
 
 
+// ________________
+// ✦ Global Variables ✦
+// ⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺
 
-// Global Variables
 
 // Typography
 let fontSans; // Helvetica
@@ -17,10 +19,11 @@ let filenamesImg = 16;
 let trinketShape = [];
 
 // Controls
+let thresholdFontDetection = 40;
+
 let toggleGraphics = false;
 let toggleGrid;
 let gridColumns = 100;
-let thresholdFontDetection = 50;
 let jitter = 0;
 
 // Arrays that save Coordinate and Image Data
@@ -169,7 +172,7 @@ function drawTrinkets() {
         cellWidth
       );
       if (col < thresholdFontDetection) {
-        drawNewTrinket(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
+          drawNewTrinket(x * cellWidth, y * cellWidth, cellWidth, cellWidth);
       }
     }
   }
@@ -178,24 +181,27 @@ function drawTrinkets() {
 // Modified drawNewTrinket to ensure it updates points array and pg2 canvas correctly
 function drawNewTrinket(x, y, w, h) {
   let img = toggleGraphics ? random(trinketShape) : random(trinketImg);
-  points.push([x, y, w, h, img, random(jitter), random(jitter)]);
-  pg2.fill(0);
-  pg2.rect(x, y, w, h);
-  pg2.updatePixels(); // Ensure pg2 updates after drawing
+  if(y < windowHeight - cellWidth){
+    points.push([x, y, w, h, img, random(jitter), random(jitter)]); // Push points to array
+    pg2.fill(0);
+    pg2.rect(x, y, w, h); // Add to pg2 mask
+    pg2.updatePixels(); // Ensure pg2 updates after drawing
+  }
+
 }
 
 // Updated findNewTrinketArea with additional logging for debugging
 function findNewTrinketArea() {
-  let x = floor(random(1, gridColumns - 1)) * cellWidth;
-  let y = floor(random(1, gridRows - 1)) * cellWidth;
-  let col = pg2.get(x + cellWidth / 2, y + cellWidth / 2);
-  // console.log(
-  //   `Checking position x: ${x}, y: ${y}, brightness: ${brightness(col)}`
-  // );
+  let threshold = 5; // Detection Threshold
 
-  if (brightness(col) > 5 && checkNeighbors(x, y)) {
-    // console.log("Drawing new trinket at:", x, y);
-    drawNewTrinket(x, y, cellWidth, cellWidth);
+  let x = floor(random(1, gridColumns - 1)) * cellWidth;
+  let y = floor(random(1, gridRows - 2)) * cellWidth;
+  let col = pg2.get(x + cellWidth / 2, y + cellWidth / 2);
+ 
+  if (y < (windowHeight - cellWidth)) {
+    if (brightness(col) > threshold && checkNeighbors(x, y)) {
+      drawNewTrinket(x, y, cellWidth, cellWidth);
+    }
   }
 }
 
