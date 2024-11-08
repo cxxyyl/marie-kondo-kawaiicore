@@ -198,7 +198,7 @@ function findNewTrinketArea() {
   let y = floor(random(1, gridRows - 2)) * cellWidth;
   let col = pg2.get(x + cellWidth / 2, y + cellWidth / 2);
  
-  if (y < (windowHeight - cellWidth)) {
+  if (y < (windowHeight - cellWidth) && x < (windowWidth - cellWidth)) {
     if (brightness(col) > threshold && checkNeighbors(x, y)) {
       drawNewTrinket(x, y, cellWidth, cellWidth);
     }
@@ -247,6 +247,9 @@ function getAverageBrightness(x, y, w, h) {
   }
   return int(totalBrightness / totalPixels);
 }
+
+
+// Saving
 
 function keyPressed() {
   if (key == "s" || key == "S") {
