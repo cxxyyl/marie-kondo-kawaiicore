@@ -1,3 +1,7 @@
+// First version of the code
+
+
+
 //  Global Variables
 
 // Typography
@@ -386,10 +390,6 @@ function drawSearchNeighbor(x, y, w, h){
 //   }
 //   return color(r / total, g / total, b / total);
 // }
-
-
-
-
 
 
 
